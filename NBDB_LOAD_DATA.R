@@ -91,7 +91,7 @@ MERGE (cellline:CellLine {name: UPPER(row.`Cell Line`)})
 MERGE (gene:Gene {name: UPPER(row.`Gene`)})
 
 MERGE (gene)-[:AMPLIFIED_IN]->(cellline)
-"
+;"
 cypher(graph,query)
 
 query = "
@@ -104,5 +104,18 @@ MERGE (cellline:CellLine {name: UPPER(row.`Cell Line`)})
 MERGE (gene:Gene {name: UPPER(row.`Gene`)})
 
 MERGE (gene)-[:DELETED_IN]->(cellline)
-"
+;"
+cypher(graph,query)
+
+query = "
+// adding pathways
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM 'file:///PATH.csv' AS row
+
+MERGE (pathway:Pathway {name: UPPER(row.`Pathway`)})
+
+MERGE (gene:Gene {name: UPPER(row.`Gene`)})
+
+MERGE (pathway)-[:ENCODED_BY]->(gene)
+;"
 cypher(graph,query)
