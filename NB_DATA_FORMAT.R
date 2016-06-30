@@ -53,3 +53,19 @@ colnames(amplified) = c("Cell Line", "Gene")
 write.csv(mutations, file = "MUT_ANN.csv", row.names = FALSE)
 write.csv(deleted, file = "DEL_ANN.csv", row.names = FALSE)
 write.csv(amplified, file = "AMP_ANN.csv", row.names = FALSE)
+
+#reformatting cell pathway data
+col <- max(count.fields("c2.all.v5.1.symbols.gmt"))
+df <- read.table("c2.all.v5.1.symbols.gmt", col.names = seq_len(col), na.strings=c("", "NA"), fill = TRUE)
+df <- as.data.frame(t(df))
+pathwayName <- df[1,]
+col <- ncol(df)
+pathways <- data.frame()
+for (i in 1:col) {
+  x = subset(df[i], !is.na(df[i]))[-c(1,2),]
+  tmp <- as.matrix(cbind.data.frame(pathwayName[i], x))
+  colnames(tmp) = NULL
+  pathways <- as.matrix(rbind.data.frame(pathways, tmp))
+}
+colnames(pathways) = c("Pathway", "Gene")
+write.csv(pathways, file = "PATH.csv", row.names = FALSE)
