@@ -15,7 +15,12 @@ LOAD CSV WITH HEADERS FROM 'file:///TREATMENT_DATA.csv' AS row
 
 MERGE (agent:Agent {name: UPPER(row.`Agent (name)`)}) 
 
-MERGE (pathway:Pathway {name: UPPER(row.`Pathway (name)`)})
+MERGE (pathway1:Pathway {name: UPPER(row.`Pathway1 (name)`)})
+
+FOREACH(_ IN CASE WHEN row.`Pathway2 (name)` <> '' THEN [1] ELSE [] END |
+  MERGE (pathway2:Pathway {name: UPPER(row.`Pathway2 (name)`)})
+  MERGE (agent)-[:TARGETS]->(pathway2)
+)
 
 MERGE (cellline:CellLine {name: UPPER(row.`Cell Line (name)`)}) 
 
@@ -23,7 +28,7 @@ MERGE (agent)-[ic50:IC50]->(cellline)
 SET ic50.score = row.`IC50 (score)`,
 ic50.test = row.`IC50 (test)`
 
-MERGE (agent)-[:TARGETS]->(pathway)
+MERGE (agent)-[:TARGETS]->(pathway1)
 ;"
 cypher(graph,query)
 
