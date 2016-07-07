@@ -119,3 +119,16 @@ MERGE (gene:Gene {name: UPPER(row.`Gene`)})
 MERGE (pathway)-[:ENCODED_BY]->(gene)
 ;"
 cypher(graph,query)
+
+query = "
+// adding expression outlier data
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM 'file:///EXP_OUTLIERS.csv' AS row
+
+MERGE (cellline:CellLine {name: UPPER(row.`Cell Line`)})
+
+MERGE (gene:Gene {name: UPPER(row.`Gene`)})
+
+MERGE (gene)-[:AMPLIFIED_IN]->(cellline)
+;"
+cypher(graph,query)
