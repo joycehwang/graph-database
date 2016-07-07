@@ -69,3 +69,21 @@ for (i in 1:col) {
 }
 colnames(pathways) = c("Pathway", "Gene")
 write.csv(pathways, file = "PATH.csv", row.names = FALSE)
+
+#reformatting expression outliers data
+df <- read.table("ExpressionOutliersMatrix.txt", header = TRUE)
+col <- ncol(df)
+cellLine <- colnames(df)
+out <- matrix()
+outliers <- data.frame()
+for (i in 2:col) {
+  tmp <- data.frame(df[1], df[i])
+  out[i] <- subset(tmp, df[i] == 1)[1]
+  if(length(out[[i]]) > 0) {
+    x = as.matrix(cbind.data.frame(rep(cellLine[i], times = length(out[[i]])), out[i]))
+    colnames(x) = NULL
+    outliers <- as.matrix(rbind.data.frame(outliers, x))
+  }
+}
+colnames(outliers) = c("Cell Line", "Gene")
+write.csv(outliers, file = "EXP_OUTLIERS.csv", row.names = FALSE)
