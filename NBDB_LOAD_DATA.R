@@ -129,6 +129,6 @@ MERGE (cellline:CellLine {name: UPPER(row.`Cell Line`)})
 
 MERGE (gene:Gene {name: UPPER(row.`Gene`)})
 
-MERGE (gene)-[:AMPLIFIED_IN]->(cellline)
+MERGE (gene)-[:OVEREXPRESSED_IN]->(cellline)
 ;"
 cypher(graph,query)
