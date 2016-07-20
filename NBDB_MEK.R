@@ -2,7 +2,7 @@ library(RNeo4j)
 
 graph = startGraph("http://localhost:7474/db/data/", username = "neo4j", password = "NEO$J")
 
-#number of MEK sensitive cell lines
+#number of MEK sensitive cell lines (IC50 < 1.16 micromole)
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'})
 WHERE r.score < 1160
@@ -18,7 +18,7 @@ RETURN COUNT(c) AS count
 "
 RES_CL = as.numeric(cypher(graph,query))
 
-#cell lines sensitive to MEK inhibitors (IC50 < 1.16 micromole)
+#cell lines sensitive to MEK inhibitors 
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}), 
 (g:Gene)-->(c)
@@ -56,7 +56,7 @@ ggplot(data = MEK_RES, aes(Count)) +
 mean <- mean(count)
 sd <- sd(count)
 
-#pathways affected in resistent cell lines
+#pathways affected in sensitive cell lines
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}),
 (p:Pathway)-[*2]->(c)
@@ -92,13 +92,16 @@ ggplot(data = MEK_RES_PATH, aes(Count)) +
 intSets <- intersect(MEK_RES_PATH[,1], MEK_SENS_PATH[,1])
 rownames(MEK_RES_PATH) <- MEK_RES_PATH[,1]
 rownames(MEK_SENS_PATH) <- MEK_SENS_PATH[,1]
-DF_RES_SENS_PATH <- cbind(MEK_RES_PATH[intSets,], MEK_SENS_PATH[intSets,]);
 DF_RES_SENS_PATH <- cbind(MEK_RES_PATH[intSets,], MEK_SENS_PATH[intSets,2]);
 colnames(DF_RES_SENS_PATH) <- c("Pathway", "Resistant_Count", "Sensitive_Count");
 grep(DF_RES_SENS_PATH[,1], "MAPK");
 DF_RES_SENS_PATH[,"MAPK_SET"] <- grepl("MAPK", DF_RES_SENS_PATH[,1]);
-ggplot(DF_RES_SENS_PATH, aes(Resistant_Count, Sensitive_Count, color=MAPK_SET))+geom_point()+geom_smooth(method="lm")+theme_bw();
-ggplot(DF_RES_SENS_PATH, aes(Resistant_Count, Sensitive_Count, color=MAPK_SET, size=MAPK_SET))+geom_point()+theme_bw();
+ggplot(DF_RES_SENS_PATH, aes(Resistant_Count, Sensitive_Count, color=MAPK_SET))+geom_point() +
+  geom_smooth(method="lm") +
+  theme_bw();
+ggplot(DF_RES_SENS_PATH, aes(Resistant_Count, Sensitive_Count, color=MAPK_SET, size=MAPK_SET)) +
+  geom_point() +
+  theme_bw();
 
 #sensitive:resistent counts ratio
 DF_RES_SENS_PATH[,"SensResRatio"] <- DF_RES_SENS_PATH["Resistant_Count"]/DF_RES_SENS_PATH[,"Sensitive_Count"];
