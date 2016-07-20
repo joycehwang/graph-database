@@ -7,6 +7,23 @@ This project is focused on building a graph database for the study of pediatric 
 #Workflow
 ---
 - Learned how to navigate Neo4j and Cypher (Neo4j's query language) along with some graph theory
+  - Online Neo4j tutorial: https://neo4j.com/graphacademy/online-training/introduction-graph-databases/
+- Using R as driver
+  - Neo4j, Graphs R Cool: https://youtu.be/bdQ90y9Pefo
+  - Visualizations with RNeo4j: https://youtu.be/5u4eT1OgB88
+  - Visualize Your Graph with RNeo4j and visNetwork: https://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html
+  - Visualizing Your Graph with RNeo4j: https://neo4j.com/blog/visualize-graph-with-rneo4j/
 - Obtained treatment data and familiarized myself with the research
+  - Recent advances in neuroblastoma (Review): http://www.ncbi.nlm.nih.gov/pubmed/20558371
+  - Cancer genes and the pathways they control: http://www.ncbi.nlm.nih.gov/pubmed/15286780
+  - Dual CDK4/CDK6 Inhibition Induces Cell Cycle Arrest and Senescence in Neuroblastoma: http://www.ncbi.nlm.nih.gov/pubmed/24045179
 - Formatted and loaded cell line mutations, pathways, expression outliers data into the database (still need to load in copy number data)
-- Proof of concept with MEK inhibitors 
+  - Pathway data: http://software.broadinstitute.org/gsea/msigdb/collections.jsp#C2
+  - Data modelling: https://linkurio.us/the-crunchbase-graph-data-modelling/
+  - Importing data into Neo4j: https://linkurio.us/crunchbase-graph-importing-data-neo4j/
+  - Some CSV import tricks in Neo4j: http://blog.comperiosearch.com/blog/2015/02/04/csv-import-tricks-neo4j/
+- Proof of concept with MEK1/2 inhibitors 
+  - Relapsed neuroblastomas show frequent RAS-MAPK pathway mutations: http://www.ncbi.nlm.nih.gov/pubmed/26121087
+  - MEK1 and MEK2 inhibitors and cancer therapy the long and winding road: http://www.ncbi.nlm.nih.gov/pubmed/26399658
+  - The clinical development of MEK inhibitors: http://www.nature.com/nrclinonc/journal/v11/n7/full/nrclinonc.2014.83.html
+- Proof of concept with CDK4/6 inhibitors
