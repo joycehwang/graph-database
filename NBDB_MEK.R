@@ -106,3 +106,10 @@ DF_RES_SENS_PATH <- DF_RES_SENS_PATH[order(DF_RES_SENS_PATH[,"SensResRatio"]),]
 
 hist(DF_RES_SENS_PATH[,"SensResRatio"], breaks=1000)
 DF_RES_SENS_PATH[DF_RES_SENS_PATH[,"MAPK_SET"]==T,]
+
+#look at BIOCARTA_RACCYCD_PATHWAY
+query = "
+MATCH (p:Pathway {name:'BIOCARTA_RACCYCD_PATHWAY'})-->(g:Gene)-[r]->(c:CellLine)
+RETURN g.name AS Gene, type(r) AS Relationship, c.name AS CellLine
+"
+RACCYCD = cypher(graph,query)
