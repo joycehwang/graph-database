@@ -16,7 +16,6 @@ This project is focused on building a graph database for the study of pediatric 
 - Obtained treatment data and familiarized myself with the research
   - Recent advances in neuroblastoma (Review): http://www.ncbi.nlm.nih.gov/pubmed/20558371
   - Cancer genes and the pathways they control: http://www.ncbi.nlm.nih.gov/pubmed/15286780
-  - Dual CDK4/CDK6 Inhibition Induces Cell Cycle Arrest and Senescence in Neuroblastoma: http://www.ncbi.nlm.nih.gov/pubmed/24045179
 - Formatted and loaded cell line mutations, pathways, expression outliers data into the database (still need to load in copy number data)
   - Pathway data: http://software.broadinstitute.org/gsea/msigdb/collections.jsp#C2
   - Data modelling: https://linkurio.us/the-crunchbase-graph-data-modelling/
@@ -27,3 +26,5 @@ This project is focused on building a graph database for the study of pediatric 
   - MEK1 and MEK2 inhibitors and cancer therapy the long and winding road: http://www.ncbi.nlm.nih.gov/pubmed/26399658
   - The clinical development of MEK inhibitors: http://www.nature.com/nrclinonc/journal/v11/n7/full/nrclinonc.2014.83.html
 - Proof of concept with CDK4/6 inhibitors
+  - Dual CDK4/CDK6 Inhibition Induces Cell Cycle Arrest and Senescence in Neuroblastoma: http://www.ncbi.nlm.nih.gov/pubmed/24045179
+  - Inhibition of CDK4/6 as a novel therapeutic option for neuroblastoma: https://cancerci.biomedcentral.com/articles/10.1186/s12935-015-0224-y
