@@ -31,4 +31,3 @@ This project is focused on building a graph database for the study of pediatric 
 - Proof of concept with BET inhibitors
   - Targeting MYCN in neuroblastoma by BET bromodomain inhibition: http://cancerdiscovery.aacrjournals.org/content/3/3/308.long
   - Antitumor activity and sensitivity evaluation of novel BET inhibitors in neuroblastoma: http://mcr.aacrjournals.org/content/13/10_Supplement/B34
-  - 
