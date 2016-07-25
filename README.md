@@ -28,3 +28,7 @@ This project is focused on building a graph database for the study of pediatric 
 - Proof of concept with CDK4/6 inhibitors
   - Dual CDK4/CDK6 Inhibition Induces Cell Cycle Arrest and Senescence in Neuroblastoma: http://www.ncbi.nlm.nih.gov/pubmed/24045179
   - Inhibition of CDK4/6 as a novel therapeutic option for neuroblastoma: https://cancerci.biomedcentral.com/articles/10.1186/s12935-015-0224-y
+- Proof of concept with BET inhibitors
+  - Targeting MYCN in neuroblastoma by BET bromodomain inhibition: http://cancerdiscovery.aacrjournals.org/content/3/3/308.long
+  - Antitumor activity and sensitivity evaluation of novel BET inhibitors in neuroblastoma: http://mcr.aacrjournals.org/content/13/10_Supplement/B34
+  - 
