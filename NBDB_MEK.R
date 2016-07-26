@@ -5,7 +5,7 @@ graph = startGraph("http://localhost:7474/db/data/", username = "neo4j", passwor
 #number of MEK sensitive cell lines (IC50 < 1.16 micromole)
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'})
-WHERE r.score < 1160
+WHERE r.score < 1000
 RETURN COUNT(c) AS count
 "
 SENS_CL = as.numeric(cypher(graph,query))
@@ -13,7 +13,7 @@ SENS_CL = as.numeric(cypher(graph,query))
 #number of MEK resistent cell lines
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'})
-WHERE r.score > 1160
+WHERE r.score > 1000
 RETURN COUNT(c) AS count
 "
 RES_CL = as.numeric(cypher(graph,query))
@@ -24,7 +24,7 @@ RES_CL = as.numeric(cypher(graph,query))
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}), 
 (g:Gene)-->(c)
-WHERE r.score < 1160
+WHERE r.score < 1000
 RETURN g.name AS Gene, count(g) AS Count
 ORDER BY Count DESC
 ;"
@@ -42,7 +42,7 @@ ggplot(data = MEK_SENS, aes(Count)) +
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}),
 (g:Gene)-->(c)
-WHERE r.score > 1160
+WHERE r.score > 1000
 RETURN g.name AS Gene, count(g) AS Count
 ORDER BY Count DESC
 ;"
@@ -60,7 +60,7 @@ ggplot(data = MEK_RES, aes(Count)) +
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}),
 (p:Pathway)-[*2]->(c)
-WHERE r.score < 1160
+WHERE r.score < 1000
 RETURN p.name AS Pathway, count(p) AS Count
 ORDER BY Count DESC
 "
@@ -76,7 +76,7 @@ ggplot(data = MEK_SENS_PATH, aes(Count)) +
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}),
 (p:Pathway)-[*2]->(c)
-WHERE r.score > 1160
+WHERE r.score > 1000
 RETURN p.name AS Pathway, count(p) AS Count
 ORDER BY Count DESC
 "
