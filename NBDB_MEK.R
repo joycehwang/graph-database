@@ -18,6 +18,8 @@ RETURN COUNT(c) AS count
 "
 RES_CL = as.numeric(cypher(graph,query))
 
+#################################################################################
+
 #cell lines sensitive to MEK inhibitors 
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}), 
@@ -35,8 +37,6 @@ ggplot(data = MEK_SENS, aes(Count)) +
   geom_histogram(binwidth = 0.1) +
   geom_freqpoly(binwidth = 0.1) +
   labs(title = "Gene Count in Sensitive Cell Lines", x = "Gene Count", y = "Frequency")
-mean <- mean(MEK_SENS$Count)
-sd <- sd(MEK_SENS$Count)
 
 #cell lines resistent to MEK inhibitors
 query = "
@@ -53,8 +53,8 @@ ggplot(data = MEK_RES, aes(Count)) +
   geom_histogram(binwidth = 0.1) +
   geom_freqpoly(binwidth = 0.1) +
   labs(title = "Gene Count in Resistent Cell Lines", x = "Gene Count", y = "Frequency")
-mean <- mean(count)
-sd <- sd(count)
+
+#################################################################################
 
 #pathways affected in sensitive cell lines
 query = "
@@ -88,6 +88,8 @@ ggplot(data = MEK_RES_PATH, aes(Count)) +
   geom_freqpoly(binwidth = 1) +
   labs(title = "Pathway Count in Resistent Cell Lines", x = "Pathway Count", y = "Frequency")
 
+#################################################################################
+
 #scatterplot of resistent counts vs sensitive counts
 intSets <- intersect(MEK_RES_PATH[,1], MEK_SENS_PATH[,1])
 rownames(MEK_RES_PATH) <- MEK_RES_PATH[,1]
@@ -96,19 +98,30 @@ DF_RES_SENS_PATH <- cbind(MEK_RES_PATH[intSets,], MEK_SENS_PATH[intSets,2]);
 colnames(DF_RES_SENS_PATH) <- c("Pathway", "Resistant_Count", "Sensitive_Count");
 grep(DF_RES_SENS_PATH[,1], "MAPK");
 DF_RES_SENS_PATH[,"MAPK_SET"] <- grepl("MAPK", DF_RES_SENS_PATH[,1]);
-ggplot(DF_RES_SENS_PATH, aes(Resistant_Count, Sensitive_Count, color=MAPK_SET))+geom_point() +
-  geom_smooth(method="lm") +
-  theme_bw();
-ggplot(DF_RES_SENS_PATH, aes(Resistant_Count, Sensitive_Count, color=MAPK_SET, size=MAPK_SET)) +
-  geom_point() +
-  theme_bw();
+ggplot(DF_RES_SENS_PATH, aes(Resistant_Count, Sensitive_Count, color = MAPK_SET))+geom_point() +
+    geom_smooth(method = "lm") +
+    theme_bw() +
+    labs(title = "MEK Sensitive and Resistant Pathway Counts", x = "Resistant Count", y = "Sensitive Count") +
+    guides(color = guide_legend(title = "MAPK"))
+ggplot(DF_RES_SENS_PATH, aes(Resistant_Count, Sensitive_Count, color = MAPK_SET, size = MAPK_SET)) +
+    geom_point() +
+    theme_bw() +
+    labs(title = "MEK Sensitive and Resistant Pathway Counts", x = "Resistant Count", y = "Sensitive Count") +
+    guides(size = guide_legend(title = "MAPK"), color = guide_legend(title = "MAPK"));
 
 #sensitive:resistent counts ratio
-DF_RES_SENS_PATH[,"SensResRatio"] <- DF_RES_SENS_PATH["Resistant_Count"]/DF_RES_SENS_PATH[,"Sensitive_Count"];
-DF_RES_SENS_PATH <- DF_RES_SENS_PATH[order(DF_RES_SENS_PATH[,"SensResRatio"]),]
+DF_RES_SENS_PATH[,"ResSensRatio"] <- DF_RES_SENS_PATH["Resistant_Count"]/DF_RES_SENS_PATH[,"Sensitive_Count"];
+DF_RES_SENS_PATH <- DF_RES_SENS_PATH[order(DF_RES_SENS_PATH[,"ResSensRatio"]),]
 
-hist(DF_RES_SENS_PATH[,"SensResRatio"], breaks=1000)
-DF_RES_SENS_PATH[DF_RES_SENS_PATH[,"MAPK_SET"]==T,]
+hist(DF_RES_SENS_PATH[,"ResSensRatio"], breaks = 100, main = "MEK Resistant:Sensitive Pathway Ratios", xlab = "Resistant:Sensitive Ratio")
+DF_RES_SENS_PATH[DF_RES_SENS_PATH[,"MAPK_SET"] == T,]
+
+#log transform data
+LOG_TRANS_RATIO <- log(DF_RES_SENS_PATH$ResSensRatio)
+MEK_LOG_TRANS <- cbind(DF_RES_SENS_PATH$Pathway, LOG_TRANS_RATIO)
+hist(LOG_TRANS_RATIO, breaks = 150, main = "MEK Resistant:Sensitive Pathway Ratios", xlab = "ln(Resistant:Sensitive Ratio)")
+
+#################################################################################
 
 #look at BIOCARTA_RACCYCD_PATHWAY
 query = "
@@ -116,3 +129,4 @@ MATCH (p:Pathway {name:'BIOCARTA_RACCYCD_PATHWAY'})-->(g:Gene)-[r]->(c:CellLine)
 RETURN g.name AS Gene, type(r) AS Relationship, c.name AS CellLine
 "
 RACCYCD = cypher(graph,query)
+write.csv(RACCYCD, file = "RACCYCD_PATH.csv", row.names = FALSE)
