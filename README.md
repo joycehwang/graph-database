@@ -7,36 +7,43 @@ This project is focused on building a graph database for the study of pediatric 
 ##Workflow
 ---
 - Learned how to navigate Neo4j and Cypher (Neo4j's query language) along with some graph theory
-  - Online Neo4j tutorial: https://neo4j.com/graphacademy/online-training/introduction-graph-databases/
+  - [Online Neo4j tutorial] (https://neo4j.com/graphacademy/online-training/introduction-graph-databases/)
+  - Used community version 3.0.1 (Linux/UNIX) and browser interface for quick queries and visualizations
+  - On start-up:
+    1. Open new terminal with neo4j-commjunity-3.0.1 as directory
+    2. Start neo4j server: ./bin/neo4j start
+    3. Open shell: bin/neo4j-shell
+    4. To stop: ./bin/neo4j stop
+  - Place all files to read into the database in the import folder
 - Using R as driver
-  - Neo4j, Graphs R Cool: https://youtu.be/bdQ90y9Pefo
-  - Visualizations with RNeo4j: https://youtu.be/5u4eT1OgB88
-  - Visualize Your Graph with RNeo4j and visNetwork: https://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html
-  - Visualizing Your Graph with RNeo4j: https://neo4j.com/blog/visualize-graph-with-rneo4j/
+  - [[Video] Neo4j, Graphs R Cool] (https://youtu.be/bdQ90y9Pefo)
+  - [[Video] Visualizations with RNeo4j] (https://youtu.be/5u4eT1OgB88)
+  - [[Article] Visualize Your Graph with RNeo4j and visNetwork] (https://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html)
+  - [[Article] Visualizing Your Graph with RNeo4j] (https://neo4j.com/blog/visualize-graph-with-rneo4j/)
 - Obtained treatment data and familiarized myself with the research
-  - Recent advances in neuroblastoma (Review): http://www.ncbi.nlm.nih.gov/pubmed/20558371
-  - Cancer genes and the pathways they control: http://www.ncbi.nlm.nih.gov/pubmed/15286780
+  - [[Paper] Recent advances in neuroblastoma (Review)] (http://www.ncbi.nlm.nih.gov/pubmed/20558371)
+  - [[Paper] Cancer genes and the pathways they control] (http://www.ncbi.nlm.nih.gov/pubmed/15286780)
 - Formatted and loaded cell line mutations, pathways, expression outliers data into the database (still need to load in copy number data)
-  - Pathway data: http://software.broadinstitute.org/gsea/msigdb/collections.jsp#C2
-  - Data modelling: https://linkurio.us/the-crunchbase-graph-data-modelling/
-  - Importing data into Neo4j: https://linkurio.us/crunchbase-graph-importing-data-neo4j/
-  - Some CSV import tricks in Neo4j: http://blog.comperiosearch.com/blog/2015/02/04/csv-import-tricks-neo4j/
+  - [[Data Set] Pathway data] (http://software.broadinstitute.org/gsea/msigdb/collections.jsp#C2)
+  - [[Article] Data modelling] (https://linkurio.us/the-crunchbase-graph-data-modelling/)
+  - [[Article] Importing data into Neo4j] (https://linkurio.us/crunchbase-graph-importing-data-neo4j/)
+  - [[Article] Some CSV import tricks in Neo4j] (http://blog.comperiosearch.com/blog/2015/02/04/csv-import-tricks-neo4j/)
 - Proof of concept with MEK1/2 inhibitors 
-  - Relapsed neuroblastomas show frequent RAS-MAPK pathway mutations: http://www.ncbi.nlm.nih.gov/pubmed/26121087
-  - MEK1 and MEK2 inhibitors and cancer therapy the long and winding road: http://www.ncbi.nlm.nih.gov/pubmed/26399658
-  - The clinical development of MEK inhibitors: http://www.nature.com/nrclinonc/journal/v11/n7/full/nrclinonc.2014.83.html
+  - [[Paper] Relapsed neuroblastomas show frequent RAS-MAPK pathway mutations] (http://www.ncbi.nlm.nih.gov/pubmed/26121087)
+  - [[Paper] MEK1 and MEK2 inhibitors and cancer therapy the long and winding road] (http://www.ncbi.nlm.nih.gov/pubmed/26399658)
+  - [[Paper] The clinical development of MEK inhibitors] (http://www.nature.com/nrclinonc/journal/v11/n7/full/nrclinonc.2014.83.html)
   - Look at differential between MEK sensitive and resistant cell lines for gene and pathway counts
   - There should be more connections from sensitive cell lines to targeted genes and less connections from resistant cell lines to target genes -> lower resisitant:sensitive ratio
   - Set IC50 cut off scores as 1000 nM
-  - RACCYCD pathway yieled significant results
+  - [RACCYCD] (http://software.broadinstitute.org/gsea/msigdb/cards/BIOCARTA_RACCYCD_PATHWAY) pathway yieled significant results
 - Proof of concept with CDK4/6 inhibitors
-  - Dual CDK4/CDK6 Inhibition Induces Cell Cycle Arrest and Senescence in Neuroblastoma: http://www.ncbi.nlm.nih.gov/pubmed/24045179
-  - Inhibition of CDK4/6 as a novel therapeutic option for neuroblastoma: https://cancerci.biomedcentral.com/articles/10.1186/s12935-015-0224-y
+  - [[Paper] Dual CDK4/CDK6 Inhibition Induces Cell Cycle Arrest and Senescence in Neuroblastoma] (http://www.ncbi.nlm.nih.gov/pubmed/24045179)
+  - [[Paper] Inhibition of CDK4/6 as a novel therapeutic option for neuroblastoma] (https://cancerci.biomedcentral.com/articles/10.1186/s12935-015-0224-y)
   - Look at differential between CDK sensitive and resistant cell lines for gene and pathway counts
   - Set IC50 cut off scores as 1000 nM
-  - MYCN yieled significant results
+  - [MYCN] (http://www.ncbi.nlm.nih.gov/gene/4613) yieled significant results
 - Proof of concept with BET inhibitors
-  - Targeting MYCN in neuroblastoma by BET bromodomain inhibition: http://cancerdiscovery.aacrjournals.org/content/3/3/308.long
-  - Antitumor activity and sensitivity evaluation of novel BET inhibitors in neuroblastoma: http://mcr.aacrjournals.org/content/13/10_Supplement/B34
+  - [[Paper] Targeting MYCN in neuroblastoma by BET bromodomain inhibition] (http://cancerdiscovery.aacrjournals.org/content/3/3/308.long)
+  - [[Abstract] Antitumor activity and sensitivity evaluation of novel BET inhibitors in neuroblastoma] (http://mcr.aacrjournals.org/content/13/10_Supplement/B34)
   - Look at differential between BET sensitive and resistant cell lines for gene and pathway counts
   - Set IC50 cut off scores as 500 nM
