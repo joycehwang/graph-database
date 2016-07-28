@@ -26,6 +26,7 @@ This project is focused on building a graph database for the study of pediatric 
   - MEK1 and MEK2 inhibitors and cancer therapy the long and winding road: http://www.ncbi.nlm.nih.gov/pubmed/26399658
   - The clinical development of MEK inhibitors: http://www.nature.com/nrclinonc/journal/v11/n7/full/nrclinonc.2014.83.html
   - Look at differential between MEK sensitive and resistant cell lines for gene and pathway counts
+  - There should be more connections from sensitive cell lines to targeted genes and less connections from resistant cell lines to target genes --> lower resisitant:sensitive ratio
   - Set IC50 cut off scores as 1000 nM
   - RACCYCD pathway yieled significant results
 - Proof of concept with CDK4/6 inhibitors
