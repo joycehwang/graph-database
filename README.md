@@ -20,9 +20,10 @@ This project is focused on building a graph database for the study of pediatric 
   - [[Video] Visualizations with RNeo4j] (https://youtu.be/5u4eT1OgB88)
   - [[Article] Visualize Your Graph with RNeo4j and visNetwork] (https://nicolewhite.github.io/2015/06/18/visualize-your-graph-with-rneo4j-and-visNetwork.html)
   - [[Article] Visualizing Your Graph with RNeo4j] (https://neo4j.com/blog/visualize-graph-with-rneo4j/)
-- Obtained treatment data and familiarized myself with the research
+- Obtained treatment information, familiarized myself with the research, and started data modeling
   - [[Paper] Recent advances in neuroblastoma (Review)] (http://www.ncbi.nlm.nih.gov/pubmed/20558371)
   - [[Paper] Cancer genes and the pathways they control] (http://www.ncbi.nlm.nih.gov/pubmed/15286780)
+  - [Arrow Tool] (http://www.apcjones.com/arrows/)
 - Formatted and loaded cell line mutations, pathways, expression outliers data into the database (still need to load in copy number data)
   - [[Data Set] Pathway data] (http://software.broadinstitute.org/gsea/msigdb/collections.jsp#C2)
   - [[Article] Data modelling] (https://linkurio.us/the-crunchbase-graph-data-modelling/)
