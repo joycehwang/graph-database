@@ -39,4 +39,3 @@ This project is focused on building a graph database for the study of pediatric 
   - Antitumor activity and sensitivity evaluation of novel BET inhibitors in neuroblastoma: http://mcr.aacrjournals.org/content/13/10_Supplement/B34
   - Look at differential between gene and pathway counts for CDK sensitive and resistant cell lines
   - Set IC50 cut off scores as 500 nM
-  - MYCN yieled significant results
