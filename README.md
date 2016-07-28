@@ -23,7 +23,7 @@ This project is focused on building a graph database for the study of pediatric 
 - Obtained treatment information, familiarized myself with the research, and started data modeling
   - [[Paper] Recent advances in neuroblastoma (Review)] (http://www.ncbi.nlm.nih.gov/pubmed/20558371)
   - [[Paper] Cancer genes and the pathways they control] (http://www.ncbi.nlm.nih.gov/pubmed/15286780)
-  - [Arrow Tool] (http://www.apcjones.com/arrows/)
+  - [Arrow tool for data modeling] (http://www.apcjones.com/arrows/)
 - Formatted and loaded cell line mutations, pathways, expression outliers data into the database (still need to load in copy number data)
   - [[Data Set] Pathway data] (http://software.broadinstitute.org/gsea/msigdb/collections.jsp#C2)
   - [[Article] Data modelling] (https://linkurio.us/the-crunchbase-graph-data-modelling/)
