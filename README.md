@@ -25,6 +25,10 @@ This project is focused on building a graph database for the study of pediatric 
   - [[Paper] Cancer genes and the pathways they control] (http://www.ncbi.nlm.nih.gov/pubmed/15286780)
   - [Arrow tool for data modeling] (http://www.apcjones.com/arrows/)
 - Formatted and loaded cell line mutations, pathways, expression outliers data into the database (still need to load in copy number data)
+  - Mutations(/Amplificatiton/Deletion): raw data in the form of matrix with cell lines and genes as axes and value of 0.5 indicating mutation and value of 0 indicating none -> csv with column of cell line name and column mutated gene name
+    - Value of 1 indicates deletion and value of 2 indicated amplification
+  - Expression Outliers: raw data in the form of a matrix with cell lines and genes as axes and value of 1 indicating outlier -> csv with column of cell line name and column of outlier gene
+  - Pathway: raw data with columns of pathway name, url, list of associated genes -> csv with column of pathway name and column of associated gene
   - [[Data Set] Pathway data] (http://software.broadinstitute.org/gsea/msigdb/collections.jsp#C2)
   - [[Article] Data modelling] (https://linkurio.us/the-crunchbase-graph-data-modelling/)
   - [[Article] Importing data into Neo4j] (https://linkurio.us/crunchbase-graph-importing-data-neo4j/)

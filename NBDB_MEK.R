@@ -1,3 +1,6 @@
+# Proof of concept: MEK1/2 inhibitors
+# Differential between sensitive and resistant cell lines for genes and pathways counts
+
 library(RNeo4j)
 
 graph = startGraph("http://localhost:7474/db/data/", username = "neo4j", password = "NEO$J")
@@ -20,16 +23,19 @@ RES_CL = as.numeric(cypher(graph,query))
 
 #################################################################################
 
-#cell lines sensitive to MEK inhibitors 
+#genes affected in sensitive cell lines
 query = "
+//cell lines tested on by agent that targets MAP2K1 
+//and all genes associated with those cell lines
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}), 
 (g:Gene)-->(c)
+//define sensitivity as IC50 score below 1000
 WHERE r.score < 1000
 RETURN g.name AS Gene, count(g) AS Count
 ORDER BY Count DESC
 ;"
 MEK_SENS = cypher(graph,query)
-MEK_SENS$Count = MEK_SENS$Count/SENS_CL
+MEK_SENS$Count = MEK_SENS$Count/SENS_CL #divide by number of sensitive cell lines to normalize data
 
 library(ggplot2)
 
@@ -38,7 +44,7 @@ ggplot(data = MEK_SENS, aes(Count)) +
   geom_freqpoly(binwidth = 0.1) +
   labs(title = "Gene Count in Sensitive Cell Lines", x = "Gene Count", y = "Frequency")
 
-#cell lines resistent to MEK inhibitors
+#genes affected in resistant cell lines
 query = "
 MATCH (c:CellLine)<-[r:IC50]-(a:Agent)-[:TARGETS]->(:Gene {name:'MAP2K1'}),
 (g:Gene)-->(c)

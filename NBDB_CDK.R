@@ -1,3 +1,6 @@
+# Proof of concept: CDK4/6 inhibitors
+# Differential between sensitive and resistant cell lines for genes and pathways counts
+
 library(RNeo4j)
 
 graph = startGraph("http://localhost:7474/db/data/", username = "neo4j", password = "NEO$J")
